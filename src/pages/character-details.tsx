@@ -9,7 +9,7 @@ export const CharacterDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
 
   const { data, isFetching, isError } = useQuery<Character[]>({
-    queryKey: ['character'],
+    queryKey: ['character', id],
     queryFn: async () => getCharacter(id || ''),
     placeholderData: keepPreviousData,
     staleTime: 1000 * 60,
@@ -37,7 +37,7 @@ export const CharacterDetails: React.FC = () => {
         <img
           src={character.image || placeholderImage}
           alt={character.name}
-          className='w-full h-64 object-cover'
+          className='w-[25dvw] h-[25dvw] object-cover rounded-full my-4 mx-auto'
         />
         <div className='p-6'>
           <h1 className='text-2xl font-bold text-gray-800'>{character.name}</h1>
